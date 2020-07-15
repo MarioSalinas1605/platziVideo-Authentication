@@ -1,0 +1,24 @@
+{
+  "name": "platzivideo-back-ssr",
+  "version": "1.0.0",
+  "description": "Proxy of platzi video project between SPA and API",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarioSalinas1605/platziVideo-Back-SSR.git"
+  },
+  "author": "Mario Salinas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarioSalinas1605/platziVideo-Back-SSR/issues"
+  },
+  "homepage": "https://github.com/MarioSalinas1605/platziVideo-Back-SSR#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
+}
