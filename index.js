@@ -46,7 +46,7 @@ app.post("/auth/sign-up", async (req, res, next) => {
         await axios({
             url: `${config.apiUrl}/api/auth/sign-up`,
             method: 'post',
-            body: user
+            data: user
         })
 
         res.status(200).json({
