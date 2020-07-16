@@ -38,7 +38,7 @@ app.post("/auth/sign-in", async (req, res, next) => {
                     maxAge: rememberMe ? THIRTY_DAYS_IN_SEC : TWO_HOURS_IN_SEC
                 });
 
-                res.status(200).json(user)
+                res.status(200).json(user);
             });
         } catch (error) {
             next(error);
@@ -53,13 +53,13 @@ app.post("/auth/sign-up", async (req, res, next) => {
             url: `${config.apiUrl}/api/auth/sign-up`,
             method: 'post',
             data: user
-        })
+        });
 
         res.status(200).json({
             message: 'User created'
         })
     } catch (error) {
-        next(error)
+        next(error);
     }
 });
 
@@ -68,7 +68,25 @@ app.get("/movies", async (req, res, next) => {
 });
 
 app.post("/user-movies", async (req, res, next) => {
+    try {
+        const{ body: userMovie } = req;
+        const { token } = req.cookies;
 
+        const { data, status } = await axios({
+            url: `${config.apiUrl}/api/user-movies`,
+            headers: { Authorization: `Bearer ${token}` },
+            method: 'post',
+            data: userMovie
+        })
+
+        if (status !== 201 ) {
+            return(boom.badImplementation());
+        }
+
+        res.status(201).json(data);
+    } catch (error) {
+        next(error);
+    }
 });
 
 app.delete("/user-movies/:userMovieId", async (req, res, next) => {
