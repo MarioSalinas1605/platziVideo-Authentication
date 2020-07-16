@@ -13,8 +13,8 @@ app.use(cookieParser());
 
 require('./utils/auth/strategies/basic');
 
-const THIRTY_DAYS_IN_SEC = 2592000;
-const TWO_HOURS_IN_SEC = 7200;
+const THIRTY_DAYS_IN_SEC = 2592000000;
+const TWO_HOURS_IN_SEC = 7200000;
 
 app.post("/auth/sign-in", async (req, res, next) => {
     const { rememberMe } = req.body;
