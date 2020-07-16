@@ -90,7 +90,24 @@ app.post("/user-movies", async (req, res, next) => {
 });
 
 app.delete("/user-movies/:userMovieId", async (req, res, next) => {
-
+    try {
+        const{ userMovieId } = req.params;
+        const { token } = req.cookies;
+    
+        const { data, status } = await axios({
+            url: `${config.apiUrl}/api/user-movies/${userMovieId}`,
+            headers: { Authorization: `Bearer ${token}` },
+            method: 'delete'
+        })
+    
+        if (status !== 200 ) {
+            return(boom.badImplementation());
+        }
+    
+        res.status(200).json(data);
+    } catch (error) {
+        next(error);
+    }
 });
 
 app.listen(config.port, () => {
