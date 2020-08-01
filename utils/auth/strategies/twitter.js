@@ -25,7 +25,7 @@ passport.use(
         })
 
         if (!data || status !== 200) {
-            return(boom.unauthorized(), false);
+            return cb(boom.unauthorized(), false);
         }
 
         return cb(null, data);
