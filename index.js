@@ -4,6 +4,7 @@ const session = require('express-session');
 const boom = require('@hapi/boom');
 const cookieParser = require('cookie-parser');
 const axios = require('axios');
+const helmet = require('helmet');
 
 const config = require('./config/index');
 
@@ -14,6 +15,7 @@ app.use(cookieParser());
 app.use(session({ secret: config.sessionSecret }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(helmet());
 
 require('./utils/auth/strategies/basic');
 require('./utils/auth/strategies/oauth');
